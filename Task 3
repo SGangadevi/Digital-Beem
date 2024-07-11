@@ -1,0 +1,73 @@
+```
+class User:
+    def __init__(self, username, password, role):
+        self.username = username
+        self.password = password
+        self.role = role
+
+class Course:
+    def __init__(self, name, instructor):
+        self.name = name
+        self.instructor = instructor
+        self.content = []
+        self.assessments = []
+
+class Assessment:
+    def __init__(self, name, questions):
+        self.name = name
+        self.questions = questions
+
+users = {}
+courses = {}
+assessments = {}
+
+def register_user(username, password, role):
+    user = User(username, password, role)
+    users[username] = user
+
+def create_course(name, instructor):
+    course = Course(name, instructor)
+    courses[name] = course
+
+def create_assessment(name, questions):
+    assessment = Assessment(name, questions)
+    assessments[name] = assessment
+
+def authenticate_user(username, password):
+    if username in users and users[username].password == password:
+        return users[username]
+    else:
+        return None
+
+def main():
+    register_user("student1", "password1", "student")
+    register_user("instructor1", "password2", "instructor")
+    register_user("admin1", "password3", "admin")
+
+    create_course("Course 1", "instructor1")
+    create_course("Course 2", "instructor2")
+
+    create_assessment("Quiz 1", ["Question 1", "Question 2"])
+    create_assessment("Assignment 1", ["Question 1", "Question 2"])
+
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    user = authenticate_user(username, password)
+
+    if user:
+        print("Authenticated successfully!")
+        if user.role == "instructor":
+            # Instructor dashboard
+            pass
+        elif user.role == "student":
+            # Student dashboard
+            pass
+        elif user.role == "admin":
+            # Admin dashboard
+            pass
+    else:
+        print("Authentication failed!")
+
+if __name__ == "__main__":
+    main()
+```
