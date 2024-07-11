@@ -1,0 +1,48 @@
+```
+class Hotel:
+    def __init__(self):
+        self.room_rates = {
+            'Delux': 2000,
+            'Suite': 3000,
+            'AC': 500,
+            'Locker': 200
+        }
+
+    def get_customer_info(self):
+        self.name = input("Enter customer name: ")
+        self.check_in = input("Enter check-in date: ")
+        self.total_days = int(input("Enter total days: "))
+        self.total_persons = int(input("Enter total persons: "))
+        self.advance_amount = float(input("Enter advance amount: "))
+
+    def get_room_info(self):
+        self.room_type = input("Select room type (Delux/Suite): ")
+        self.amenities = input("Select amenities (AC/Locker): ")
+
+    def calculate_room_cost(self):
+        self.room_cost = self.room_rates[self.room_type] * self.total_days
+        self.amenities_cost = sum(self.room_rates[amenity] * self.total_days for amenity in self.amenities.split(','))
+        self.extra_person_cost = (self.total_persons - 1) * 1000 * self.total_days
+        self.total_cost = self.room_cost + self.amenities_cost + self.extra_person_cost
+        self.balance = self.total_cost - self.advance_amount
+
+    def display_info(self):
+        print("Customer Name:", self.name)
+        print("Check-in Date:", self.check_in)
+        print("Total Days:", self.total_days)
+        print("Total Persons:", self.total_persons)
+        print("Room Type:", self.room_type)
+        print("Amenities:", self.amenities)
+        print("Total Room Cost:", self.room_cost)
+        print("Amenities Cost:", self.amenities_cost)
+        print("Extra Person Cost:", self.extra_person_cost)
+        print("Total Cost:", self.total_cost)
+        print("Balance:", self.balance)
+
+
+hotel = Hotel()
+hotel.get_customer_info()
+hotel.get_room_info()
+hotel.calculate_room_cost()
+hotel.display_info()
+```
